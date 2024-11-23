@@ -506,56 +506,6 @@ public class Login extends javax.swing.JFrame {
                     Formatos.mostrarMensajesEnPaginas(mensajesMensaje.toString(), "Mensajes");
                     break;
 
-                /*
-                 * case 6:
-                 * // Solicitar fechas al usuario
-                 * String fechaInicioStr = JOptionPane
-                 * .showInputDialog("Ingrese la fecha de inicio (YYYY-MM-DD):");
-                 * String fechaFinStr = JOptionPane
-                 * .showInputDialog("Ingrese la fecha de fin (YYYY-MM-DD):");
-                 * 
-                 * // Convertir las fechas ingresadas por el usuario a objetos LocalDate
-                 * LocalDate fechaInicio = LocalDate.parse(fechaInicioStr);
-                 * LocalDate fechaFin = LocalDate.parse(fechaFinStr);
-                 * 
-                 * // Validar que la fecha de fin sea posterior a la fecha de inicio
-                 * if (fechaFin.isBefore(fechaInicio)) {
-                 * JOptionPane.showMessageDialog(null,
-                 * "La fecha de fin debe ser posterior a la fecha de inicio.", "Error",
-                 * JOptionPane.ERROR_MESSAGE);
-                 * break;
-                 * }
-                 * 
-                 * // Filtrar mensajes por fecha
-                 * StringBuilder mensajesFiltrados = new StringBuilder();
-                 * boolean encontradoFecha = false;
-                 * for (Tema tema : foro.getTemas()) {
-                 * for (Mensaje mensaje : tema.getMensajes()) {
-                 * LocalDateTime fechaMensaje = LocalDateTime.parse(mensaje.getFechaHora(),
-                 * Mensaje.formatter); // Accede a formatter como AtrMensaje.formatter
-                 * LocalDate fechaMensajeLocalDate = fechaMensaje.toLocalDate();
-                 * if (!fechaMensajeLocalDate.isBefore(fechaInicio)
-                 * && !fechaMensajeLocalDate.isAfter(fechaFin)) {
-                 * mensajesFiltrados.append(mensaje.toString()).append("\n");
-                 * encontradoFecha = true;
-                 * }
-                 * }
-                 * }
-                 * // Mostrar resultados en JOptionPane
-                 * if (encontradoFecha) {
-                 * String mensajesFormateados = Formatos
-                 * .limpiarFormatoConsola(mensajesFiltrados.toString());
-                 * JOptionPane.showMessageDialog(null,
-                 * "<html><pre>" + mensajesFormateados + "</pre></html>",
-                 * "Mensajes entre " + fechaInicioStr + " y " + fechaFinStr,
-                 * JOptionPane.INFORMATION_MESSAGE);
-                 * } else {
-                 * JOptionPane.showMessageDialog(null,
-                 * "No se encontraron mensajes entre " + fechaInicioStr + " y " + fechaFinStr,
-                 * "Error", JOptionPane.ERROR_MESSAGE);
-                 * }
-                 * break;
-                 */
                 case 6:
                     JOptionPane.showMessageDialog(null, "Sesion cerrada con éxito");
                     break;
