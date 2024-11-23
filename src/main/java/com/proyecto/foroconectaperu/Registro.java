@@ -63,7 +63,7 @@ public class Registro extends javax.swing.JFrame {
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(38, 49, 61,130));
+        jPanel2.setBackground(new java.awt.Color(38, 49, 61,120));
 
         jLabel1.setFont(new java.awt.Font("Arial Narrow", 1, 28)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
