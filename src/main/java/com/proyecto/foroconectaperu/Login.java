@@ -36,7 +36,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         gestionU.loadUser(); // Cargar usuarios al inicio
         gestionA.cargaAdmin();// PARA CARGAR LOS ADMINISTARDORES ACTUALES REGISTRADOS
-        this.setSize(new Dimension(1200, 710));
+        this.setSize(new Dimension(1210, 720));
     }
 
     /**
@@ -61,7 +61,6 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btn_crearCuenta = new javax.swing.JButton();
         btn_inciarSesion = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         btn_volver = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
@@ -69,7 +68,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(38, 49, 61));
+        jPanel1.setBackground(new java.awt.Color(36, 48, 60,150));
 
         jLabel1.setFont(new java.awt.Font("Arial Narrow", 1, 28)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -174,11 +173,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 500, 420));
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen 9.png"))); // NOI18N
-        jLabel7.setText("jLabel7");
-        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 420, 640, 300));
+        jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 500, 420));
 
         btn_volver.setBackground(new java.awt.Color(255, 153, 0));
         btn_volver.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
@@ -189,9 +184,9 @@ public class Login extends javax.swing.JFrame {
                 btn_volverActionPerformed(evt);
             }
         });
-        jPanel4.add(btn_volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 40));
+        jPanel4.add(btn_volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 120, 40));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dina7.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/congreso.jpg"))); // NOI18N
         jLabel5.setText("jLabel5");
         jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-60, 0, 1270, 720));
 
@@ -199,9 +194,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1210, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -600,7 +593,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
