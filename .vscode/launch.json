@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Inicio",
+      "request": "launch",
+      "mainClass": "com.proyecto.foroconectaperu.Inicio",
+      "projectName": "ForoConectaPeru"
+    },
+    {
+      "type": "java",
+      "name": "Main2",
+      "request": "launch",
+      "mainClass": "com.proyecto.foroconectaperu.Main2",
+      "projectName": "ForoConectaPeru"
+    },
+    {
+      "type": "java",
+      "name": "Main1",
+      "request": "launch",
+      "mainClass": "com.proyecto.foroconectaperu.Main1",
+      "projectName": "ForoConectaPeru"
+    }
+  ]
+}

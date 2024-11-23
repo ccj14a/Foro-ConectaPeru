@@ -1,0 +1,9 @@
+*.puml
+*.class
+/target/
+/nbproject/
+/.netbeans/
+*.user
+*.user.dat
+# IntelliJ IDEA project files
+*.iml
