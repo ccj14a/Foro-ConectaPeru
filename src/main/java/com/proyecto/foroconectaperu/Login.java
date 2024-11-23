@@ -16,6 +16,8 @@ import com.proyecto.Otros.Formatos;
 import static com.proyecto.foroconectaperu.Main1.clearConsole;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -472,6 +474,7 @@ public class Login extends javax.swing.JFrame {
 
                     } while (opOpcion != 3);
                     break;
+
                 case 2:
                     if (gestionA.adminVacio()) {
                         JOptionPane.showMessageDialog(null, "No hay administardores agregados");
@@ -487,31 +490,49 @@ public class Login extends javax.swing.JFrame {
                     break;
 
                 case 4:
-                    StringBuilder temasMensaje = new StringBuilder("Temas creados:\n");
-                    for (Tema tema : foro.getTemas()) {
-                        temasMensaje.append(tema.getTitulo()).append("\n");
-                    }
-                    JOptionPane.showMessageDialog(null, temasMensaje.toString(), "Temas",
-                            JOptionPane.INFORMATION_MESSAGE);
-
-                    break;
-                case 5:
                     StringBuilder mensajesMensaje = new StringBuilder("Mensajes:\n");
                     for (Tema tema : foro.getTemas()) {
-                        mensajesMensaje.append("Tema: ").append(tema.getTitulo()).append("\n");
-                        for (Mensaje mensaje : tema.getMensajes()) {
-                            mensajesMensaje.append(mensaje.toString()).append("\n");
-                        }
+                        mensajesMensaje.append(tema);
                     }
+                    clearConsole();
                     Formatos.mostrarMensajesEnPaginas(mensajesMensaje.toString(), "Mensajes");
+                    clearConsole();
                     break;
 
+                case 5:
+                    int idB = Integer
+                            .parseInt(JOptionPane.showInputDialog(null, "ID del tema:"));
+                    foro.deleteTema(idB, Administrador.getADMIN_GENERAL());
+
+                    break;
                 case 6:
+                    int idBu = Integer
+                            .parseInt(JOptionPane.showInputDialog(null, "ID del tema:"));
+                    int numE = Integer
+                            .parseInt(JOptionPane.showInputDialog(null, "ID del mensaje:"));
+                    foro.eliminarMensaje(idBu, numE, Administrador.getADMIN_GENERAL());
+
+                    break;
+
+                case 7:
+                    int idBus = Integer
+                            .parseInt(JOptionPane.showInputDialog(null, "ID del tema:"));
+                    int numMen = Integer
+                            .parseInt(JOptionPane.showInputDialog(null, "ID del mensaje:"));
+                    int numR = Integer
+                            .parseInt(JOptionPane.showInputDialog(null,
+                                    "ID del comentario:"));
+                    foro.eliminarRespuesta(idBus, numMen, numR, Administrador.getADMIN_GENERAL());
+
+                    break;
+
+                case 8:
+
                     JOptionPane.showMessageDialog(null, "Sesion cerrada con éxito");
                     break;
             }
 
-        } while (opAdmin != 6);
+        } while (opAdmin != 8);
         Home hom = new Home();
         hom.setVisible(true);
         hom.setLocationRelativeTo(null);

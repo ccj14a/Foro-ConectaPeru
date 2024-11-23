@@ -1,4 +1,3 @@
-
 package com.proyecto.Clases;
 
 import java.awt.Dimension;
@@ -72,6 +71,7 @@ public class Foro implements Serializable {
         }
     }
 
+
     public void guardarTemas() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("data/temas.ser"))) {
             out.writeObject(temas);
@@ -103,7 +103,7 @@ public class Foro implements Serializable {
 
         if (tema != null) {
             // Verificar si el usuario actual tiene permiso para eliminar el tema
-            if (tema.getAutor().equals(usuario)) {
+            if (tema.getAutor().equals(usuario) || usuario.equals(Administrador.getADMIN_GENERAL())) {
                 // Eliminar el tema de la lista
                 int indiceTema = temas.indexOf(tema); // Obtener el índice del tema a eliminar
                 temas.remove(tema); // Eliminar el tema de la lista
@@ -138,10 +138,10 @@ public class Foro implements Serializable {
                 // Verificar si la respuesta especificada existe
                 if (numRespuesta > 0 && numRespuesta <= mensaje.getRespuestas().size()) {
                     Mensaje respuesta = mensaje.getRespuestas().get(numRespuesta - 1); // Restamos 1 porque el índice es
-                                                                                       // base 0
+                    // base 0
 
                     // Verificar si el usuario actual es el autor de la respuesta
-                    if (respuesta.getAutor().equals(usuarioActual)) {
+                    if (respuesta.getAutor().equals(usuarioActual) || usuarioActual.equals(Administrador.getADMIN_GENERAL())) {
                         // Eliminar la respuesta
                         mensaje.getRespuestas().remove(numRespuesta - 1); // Eliminar la respuesta especificada
 
@@ -256,7 +256,7 @@ public class Foro implements Serializable {
 
         // Crear un JScrollPane y ajustar su tamaño preferido
         JScrollPane scrollPane = new JScrollPane(textPane);
-        scrollPane.setPreferredSize(new Dimension(500, 400)); // Ajusta el tamaño según sea necesario
+        scrollPane.setPreferredSize(new Dimension(700, 500)); // Ajusta el tamaño según sea necesario
 
         JOptionPane.showMessageDialog(null, scrollPane, titulo, JOptionPane.INFORMATION_MESSAGE);
     }
@@ -284,7 +284,7 @@ public class Foro implements Serializable {
             // Verificar si el mensaje a eliminar es uno de los mensajes posteriores
             if (numMensaje > 1 && numMensaje <= tema.getMensajes().size()) {
                 Mensaje mensaje = tema.getMensajes().get(numMensaje - 1); // Restamos 1 porque la lista está indexada
-                                                                          // desde 0
+                // desde 0
                 if (mensaje.getAutor().equals(usuarioActual)) {
                     tema.getMensajes().remove(numMensaje - 1); // Eliminar el mensaje especificado
                     JOptionPane.showMessageDialog(null, "Mensaje eliminado con éxito", "Eliminar Mensaje",

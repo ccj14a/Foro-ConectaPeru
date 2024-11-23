@@ -9,12 +9,9 @@ import javax.swing.JOptionPane;
 
 public class Administrador extends SuperUsuario {
 
-    // atributo propio
+    // atributos
     private double salario;
-    private static Administrador[] administradoresNormales = new Administrador[100];
-    public static int idAdmin = 1;
     private int idUnico;
-    private static int contador = 0;
 
     public Administrador(double salario, String nombres, String usuario, String contra) {
         super(nombres, usuario, contra);
@@ -194,5 +191,8 @@ public class Administrador extends SuperUsuario {
     }
     private static final String ADMIN_GENERAL = "ADMIN";
     private static final String PASSWORD_GENERAL = "ADMIN";
+    private static Administrador[] administradoresNormales = new Administrador[100];
+    public static int idAdmin = 1;
+    private static int contador = 0;
 
 }

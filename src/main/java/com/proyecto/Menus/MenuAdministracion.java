@@ -15,12 +15,14 @@ public class MenuAdministracion {
                 [1]. Gestionar Usuarios
                 [2]. Gestionar administradores
                 [3]. Agregar Administrador
-                [4]. Temas creados
-                [5]. Administrar Mensajes
-                [6]. Cerrar Sesión
+                [4]. ver foro
+                [5]. Borrar tema
+                [6]. Borrar mensaje
+                [7]. Borrar comentario
+                [8]. Cerrar Sesión
                 """;
 
-        String[] opciones = { "1", "2", "3", "4", "5", "6"}; // Opciones numeradas
+        String[] opciones = { "1", "2", "3", "4", "5", "6","7","8"}; // Opciones numeradas
 
         int seleccion = JOptionPane.showOptionDialog(null, menu, "Menu de Administración",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
