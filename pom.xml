@@ -51,4 +51,5 @@
         </plugin>
     </plugins>
 </build>
+    <name>ForoConectaPeru</name>
 </project>
