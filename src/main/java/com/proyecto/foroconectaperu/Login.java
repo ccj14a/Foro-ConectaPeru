@@ -39,6 +39,7 @@ public class Login extends javax.swing.JFrame {
         gestionU.loadUser(); // Cargar usuarios al inicio
         gestionA.cargaAdmin();// PARA CARGAR LOS ADMINISTARDORES ACTUALES REGISTRADOS
         this.setSize(new Dimension(1210, 720));
+        
     }
 
     /**
@@ -243,77 +244,89 @@ public class Login extends javax.swing.JFrame {
                             // clearConsole();
 
                             switch (opF) {
-
                                 case 1:
-                                    String titulo = JOptionPane
-                                            .showInputDialog("Ingrese el título del nuevo tema:");
+                                    String titulo = JOptionPane.showInputDialog("Ingrese el título del nuevo tema:");
+                                    if (titulo == null || titulo.trim().isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Operación cancelada o título vacío.");
+                                        break;
+                                    }
                                     if (foro.crearTema(titulo, usuarioActual.getUsuario())) {
                                         foro.mostrarForo();
-                                        clearConsole();
                                     }
                                     clearConsole();
                                     break;
 
                                 case 2:
                                     // Agregar un mensaje a un tema
-                                    int idTema = Integer.parseInt(JOptionPane.showInputDialog(
-                                            "Ingrese el número del tema al que desea agregar un mensaje:"));
-                                    String autor = usuarioActual.getUsuario();
+                                    String inputIdTema = JOptionPane.showInputDialog("Ingrese el número del tema al que desea agregar un mensaje:");
+                                    if (inputIdTema == null || inputIdTema.trim().isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada inválida.");
+                                        break;
+                                    }
+                                    int idTema = Integer.parseInt(inputIdTema);
+
                                     String contenido = JOptionPane.showInputDialog("Ingrese su mensaje:");
-                                    foro.aMensaje(idTema, autor, contenido); // Ahora se usa el ID en lugar
-                                    // del título
+                                    if (contenido == null || contenido.trim().isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Operación cancelada o mensaje vacío.");
+                                        break;
+                                    }
+                                    foro.aMensaje(idTema, usuarioActual.getUsuario(), contenido);
                                     foro.mostrarForo();
                                     clearConsole();
                                     break;
+
                                 case 3:
                                     // Responder a un mensaje
-                                    idTema = Integer.parseInt(JOptionPane.showInputDialog(
-                                            "Ingrese el número del tema al que desea dejar un comentario:"));
-                                    int numMensaje = Integer.parseInt(JOptionPane
-                                            .showInputDialog("Ingresa el número del mensaje a comentar:"));
-                                    autor = usuarioActual.getUsuario();
-                                    contenido = JOptionPane.showInputDialog("Ingrese el comentario:");
-                                    foro.responderMensaje(idTema, numMensaje, autor, contenido); // Se usa
-                                    // el ID
-                                    // para
-                                    // responder
-                                    foro.mostrarForo();
-                                    clearConsole();
-                                    break;
-
-                                /*
-                                 * case 4:
-                                 * foro.mostrarForo();
-                                 * break;
-                                 */
-                                case 4:
-                                    String palabraClave = JOptionPane.showInputDialog(
-                                            "Ingrese la palabra clave para buscar en el foro:");
-                                    if (palabraClave != null && !palabraClave.trim().isEmpty()) {
-                                        foro.buscarPorPalabraClave(palabraClave);
-                                    } else {
-                                        JOptionPane.showMessageDialog(null,
-                                                "Debe ingresar una palabra clave válida.", "Error",
-                                                JOptionPane.ERROR_MESSAGE);
+                                    inputIdTema = JOptionPane.showInputDialog("Ingrese el número del tema al que desea dejar un comentario:");
+                                    if (inputIdTema == null || inputIdTema.trim().isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada inválida.");
+                                        break;
                                     }
+                                    idTema = Integer.parseInt(inputIdTema);
+
+                                    String inputNumMensaje = JOptionPane.showInputDialog("Ingresa el número del mensaje a comentar:");
+                                    if (inputNumMensaje == null || inputNumMensaje.trim().isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada inválida.");
+                                        break;
+                                    }
+                                    int numMensaje = Integer.parseInt(inputNumMensaje);
+
+                                    contenido = JOptionPane.showInputDialog("Ingrese el comentario:");
+                                    if (contenido == null || contenido.trim().isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Operación cancelada o comentario vacío.");
+                                        break;
+                                    }
+                                    foro.responderMensaje(idTema, numMensaje, usuarioActual.getUsuario(), contenido);
                                     foro.mostrarForo();
                                     clearConsole();
-
                                     break;
+
+                                case 4:
+                                    String palabraClave = JOptionPane.showInputDialog("Ingrese la palabra clave para buscar en el foro:");
+                                    if (palabraClave == null || palabraClave.trim().isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada vacía.");
+                                        break;
+                                    }
+                                    foro.buscarPorPalabraClave(palabraClave);
+                                    foro.mostrarForo();
+                                    clearConsole();
+                                    break;
+
                                 case 5:
-                                    String autorX = JOptionPane
-                                            .showInputDialog("Ingrese el nombre del autor a filtrar:");
+                                    String autorX = JOptionPane.showInputDialog("Ingrese el nombre del autor a filtrar:");
+                                    if (autorX == null || autorX.trim().isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada vacía.");
+                                        break;
+                                    }
                                     boolean encontrado = false;
                                     StringBuilder mensajesAutor = new StringBuilder();
 
                                     for (Tema tema : foro.getTemas()) {
                                         for (Mensaje mensaje : tema.getMensajes()) {
-                                            // Verificar el mensaje principal
                                             if (mensaje.getAutor().equalsIgnoreCase(autorX)) {
                                                 mensajesAutor.append(mensaje.toString()).append("\n");
                                                 encontrado = true;
                                             }
-                                            // Verificar las respuestas del mensaje principal
                                             for (Mensaje respuesta : mensaje.getRespuestas()) {
                                                 if (respuesta.getAutor().equalsIgnoreCase(autorX)) {
                                                     mensajesAutor.append(respuesta.toString()).append("\n");
@@ -324,48 +337,75 @@ public class Login extends javax.swing.JFrame {
                                     }
 
                                     if (encontrado) {
-                                        String mensajesFormateados = Formatos
-                                                .limpiarFormatoConsola(mensajesAutor.toString());
-                                        JOptionPane.showMessageDialog(null, mensajesFormateados,
-                                                "Mensajes del Autor: " + autorX,
-                                                JOptionPane.INFORMATION_MESSAGE);
+                                        String mensajesFormateados = Formatos.limpiarFormatoConsola(mensajesAutor.toString());
+                                        JOptionPane.showMessageDialog(null, mensajesFormateados, "Mensajes del Autor: " + autorX, JOptionPane.INFORMATION_MESSAGE);
                                     } else {
-                                        JOptionPane.showMessageDialog(null,
-                                                "No se encontraron mensajes del autor: " + autorX, "Error",
-                                                JOptionPane.ERROR_MESSAGE);
+                                        JOptionPane.showMessageDialog(null, "No se encontraron mensajes del autor: " + autorX, "Error", JOptionPane.ERROR_MESSAGE);
                                     }
                                     foro.mostrarForo();
                                     clearConsole();
                                     break;
+
                                 case 6:
-                                    int idB = Integer
-                                            .parseInt(JOptionPane.showInputDialog(null, "ID del tema:"));
+                                    String inputIdB = JOptionPane.showInputDialog("ID del tema:");
+                                    if (inputIdB == null || inputIdB.trim().isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada inválida.");
+                                        break;
+                                    }
+                                    int idB = Integer.parseInt(inputIdB);
                                     foro.deleteTema(idB, usuarioActual.getUsuario());
                                     clearConsole();
                                     break;
+
                                 case 7:
-                                    int idBu = Integer
-                                            .parseInt(JOptionPane.showInputDialog(null, "ID del tema:"));
-                                    int numE = Integer
-                                            .parseInt(JOptionPane.showInputDialog(null, "ID del mensaje:"));
+                                    String inputIdBu = JOptionPane.showInputDialog("ID del tema:");
+                                    if (inputIdBu == null || inputIdBu.trim().isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada inválida.");
+                                        break;
+                                    }
+                                    int idBu = Integer.parseInt(inputIdBu);
+
+                                    String inputNumE = JOptionPane.showInputDialog("ID del mensaje:");
+                                    if (inputNumE == null || inputNumE.trim().isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada inválida.");
+                                        break;
+                                    }
+                                    int numE = Integer.parseInt(inputNumE);
+
                                     foro.eliminarMensaje(idBu, numE, usuarioActual.getUsuario());
                                     clearConsole();
                                     break;
 
                                 case 8:
-                                    int idBus = Integer
-                                            .parseInt(JOptionPane.showInputDialog(null, "ID del tema:"));
-                                    int numMen = Integer
-                                            .parseInt(JOptionPane.showInputDialog(null, "ID del mensaje:"));
-                                    int numR = Integer
-                                            .parseInt(JOptionPane.showInputDialog(null,
-                                                    "ID del comentario:"));
+                                    String inputIdBus = JOptionPane.showInputDialog("ID del tema:");
+                                    if (inputIdBus == null || inputIdBus.trim().isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada inválida.");
+                                        break;
+                                    }
+                                    int idBus = Integer.parseInt(inputIdBus);
+
+                                    String inputNumMen = JOptionPane.showInputDialog("ID del mensaje:");
+                                    if (inputNumMen == null || inputNumMen.trim().isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada inválida.");
+                                        break;
+                                    }
+                                    int numMen = Integer.parseInt(inputNumMen);
+
+                                    String inputNumR = JOptionPane.showInputDialog("ID del comentario:");
+                                    if (inputNumR == null || inputNumR.trim().isEmpty()) {
+                                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada inválida.");
+                                        break;
+                                    }
+                                    int numR = Integer.parseInt(inputNumR);
+
                                     foro.eliminarRespuesta(idBus, numMen, numR, usuarioActual.getUsuario());
                                     clearConsole();
                                     break;
+
                                 case 9:
                                     clearConsole();
                                     break;
+
                             }
                         } while (opF != 9);
                         break;
@@ -490,9 +530,11 @@ public class Login extends javax.swing.JFrame {
                     break;
 
                 case 4:
-                    StringBuilder mensajesMensaje = new StringBuilder("Mensajes:\n");
+                    
+                    StringBuilder mensajesMensaje = new StringBuilder();
                     for (Tema tema : foro.getTemas()) {
                         mensajesMensaje.append(tema);
+                        mensajesMensaje.append("-------------------------------------------------------------------------------------------------------------------------------------------------------\n");
                     }
                     clearConsole();
                     Formatos.mostrarMensajesEnPaginas(mensajesMensaje.toString(), "Mensajes");
@@ -500,28 +542,55 @@ public class Login extends javax.swing.JFrame {
                     break;
 
                 case 5:
-                    int idB = Integer
-                            .parseInt(JOptionPane.showInputDialog(null, "ID del tema:"));
+                    String inputIdB = JOptionPane.showInputDialog(null, "ID del tema:");
+                    if (inputIdB == null || inputIdB.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada vacía.");
+                        break; // Salir del caso sin realizar ninguna acción
+                    }
+                    int idB = Integer.parseInt(inputIdB);
                     foro.deleteTema(idB, Administrador.getADMIN_GENERAL());
-
                     break;
-                case 6:
-                    int idBu = Integer
-                            .parseInt(JOptionPane.showInputDialog(null, "ID del tema:"));
-                    int numE = Integer
-                            .parseInt(JOptionPane.showInputDialog(null, "ID del mensaje:"));
-                    foro.eliminarMensaje(idBu, numE, Administrador.getADMIN_GENERAL());
 
+                case 6:
+                    String inputIdBu = JOptionPane.showInputDialog(null, "ID del tema:");
+                    if (inputIdBu == null || inputIdBu.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada vacía.");
+                        break;
+                    }
+                    int idBu = Integer.parseInt(inputIdBu);
+
+                    String inputNumE = JOptionPane.showInputDialog(null, "ID del mensaje:");
+                    if (inputNumE == null || inputNumE.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada vacía.");
+                        break;
+                    }
+                    int numE = Integer.parseInt(inputNumE);
+
+                    foro.eliminarMensaje(idBu, numE, Administrador.getADMIN_GENERAL());
                     break;
 
                 case 7:
-                    int idBus = Integer
-                            .parseInt(JOptionPane.showInputDialog(null, "ID del tema:"));
-                    int numMen = Integer
-                            .parseInt(JOptionPane.showInputDialog(null, "ID del mensaje:"));
-                    int numR = Integer
-                            .parseInt(JOptionPane.showInputDialog(null,
-                                    "ID del comentario:"));
+                    String inputIdBus = JOptionPane.showInputDialog(null, "ID del tema:");
+                    if (inputIdBus == null || inputIdBus.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada vacía.");
+                        break;
+                    }
+                    int idBus = Integer.parseInt(inputIdBus);
+
+                    String inputNumMen = JOptionPane.showInputDialog(null, "ID del mensaje:");
+                    if (inputNumMen == null || inputNumMen.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada vacía.");
+                        break;
+                    }
+                    int numMen = Integer.parseInt(inputNumMen);
+
+                    String inputNumR = JOptionPane.showInputDialog(null, "ID del comentario:");
+                    if (inputNumR == null || inputNumR.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada vacía.");
+                        break;
+                    }
+                    int numR = Integer.parseInt(inputNumR);
+
                     foro.eliminarRespuesta(idBus, numMen, numR, Administrador.getADMIN_GENERAL());
 
                     break;

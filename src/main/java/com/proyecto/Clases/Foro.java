@@ -1,9 +1,18 @@
 package com.proyecto.Clases;
 
 import java.awt.Dimension;
-import java.io.*;
-import java.util.*;
-import javax.swing.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 
 public class Foro implements Serializable {
 
@@ -268,7 +277,7 @@ public class Foro implements Serializable {
             // Verificar si el mensaje a eliminar es el primero en la lista
             if (numMensaje == 1) {
                 Mensaje mensajePrincipal = tema.getMensajes().get(0);
-                if (mensajePrincipal.getAutor().equals(usuarioActual)) {
+                if (mensajePrincipal.getAutor().equals(usuarioActual) || usuarioActual.equals(Administrador.getADMIN_GENERAL())) {
                     tema.getMensajes().remove(0); // Elimina el mensaje principal
                     JOptionPane.showMessageDialog(null, "Mensaje eliminado con éxito", "Eliminar Mensaje",
                             JOptionPane.INFORMATION_MESSAGE);
@@ -285,7 +294,7 @@ public class Foro implements Serializable {
             if (numMensaje > 1 && numMensaje <= tema.getMensajes().size()) {
                 Mensaje mensaje = tema.getMensajes().get(numMensaje - 1); // Restamos 1 porque la lista está indexada
                 // desde 0
-                if (mensaje.getAutor().equals(usuarioActual)) {
+                if (mensaje.getAutor().equals(usuarioActual)|| usuarioActual.equals(Administrador.getADMIN_GENERAL())) {
                     tema.getMensajes().remove(numMensaje - 1); // Eliminar el mensaje especificado
                     JOptionPane.showMessageDialog(null, "Mensaje eliminado con éxito", "Eliminar Mensaje",
                             JOptionPane.INFORMATION_MESSAGE);

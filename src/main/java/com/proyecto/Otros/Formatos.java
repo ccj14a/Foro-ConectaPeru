@@ -18,41 +18,30 @@ public class Formatos {
         return texto;
     }
 
-    public static void mostrarMensajesEnPaginas(String contenido, String titulo) {
-        // Elimina los caracteres de escape y códigos de color
-        contenido = contenido.replaceAll("\u001B\\[[;\\d]*m", "");
+   public static void mostrarMensajesEnPaginas(String contenido, String titulo) {
+    //Elimina los caracteres de escape y códigos de color
+    contenido = contenido.replaceAll("\u001B\\[[;\\d]*m", "");
 
-        final int TAMANO_MAXIMO = 1000; // Ajusta este valor según sea necesario
-        int inicio = 0;
-        int totalLength = contenido.length();
+    // Reemplazar las etiquetas <br> por saltos de línea estándar
+    contenido = contenido.replaceAll("<br>", "\n");
 
-        while (inicio < totalLength) {
-            int fin = Math.min(inicio + TAMANO_MAXIMO, totalLength);
-            String parte = contenido.substring(inicio, fin);
+    //Formato adecuado para tabulaciones
+    //contenido = contenido.replaceAll("(?m)^", "\t");  // Agregar tabulación al inicio de cada línea
 
-            JTextArea textArea = new JTextArea(parte);
-            textArea.setLineWrap(true);
-            textArea.setWrapStyleWord(true);
-            textArea.setCaretPosition(0);  // Para asegurarse de que el texto se muestre desde el principio
-            textArea.setEditable(false);
+    // Crear el JTextArea con todo el contenido
+    JTextArea textArea = new JTextArea(contenido);
+    textArea.setLineWrap(true);
+    textArea.setWrapStyleWord(true);
+    textArea.setCaretPosition(0);  // Asegurarse de que el texto se muestre desde el principio
+    textArea.setEditable(false);  // El texto no debe ser editable
 
-            JScrollPane scrollPane = new JScrollPane(textArea);
-            scrollPane.setPreferredSize(new Dimension(600, 300)); // Ajusta el tamaño del JScrollPane según sea necesario
+    // Crear JScrollPane para permitir el desplazamiento del texto
+    JScrollPane scrollPane = new JScrollPane(textArea);
+    scrollPane.setPreferredSize(new Dimension(650, 400));  // Ajusta el tamaño según sea necesario
 
-            Object[] options = {"Anterior", "Siguiente", "Cerrar"};
-            int opcion = JOptionPane.showOptionDialog(null, scrollPane, titulo,
-                    JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[1]);
+    // Mostrar el contenido en un solo cuadro de diálogo sin paginación
+    JOptionPane.showMessageDialog(null, scrollPane, titulo, JOptionPane.INFORMATION_MESSAGE);
+}
 
-            if (opcion == JOptionPane.CLOSED_OPTION || opcion == 2) {
-                break;
-            } else if (opcion == 0 && inicio > 0) { // Anterior
-                inicio = Math.max(0, inicio - TAMANO_MAXIMO);
-            } else if (opcion == 1 && fin < totalLength) { // Siguiente
-                inicio = fin;
-            } else {
-                break;
-            }
-        }
-    }
     
 }
