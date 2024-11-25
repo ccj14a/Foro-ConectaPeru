@@ -24,16 +24,16 @@ import javax.swing.JTextArea;
  * @author ALE
  */
 public class Login extends javax.swing.JFrame {
-
+    
     Usuario gestionU = new Usuario();
-
+    
     Administrador gestionA = new Administrador();
-
+    
     Foro foro = new Foro(); // Crear instancia de foro y cargar temas
     Administrador admin = new Administrador();
     Usuario usuarioActual = null;
     Administrador adminActualNormal = null;
-
+    
     public Login() {
         initComponents();
         gestionU.loadUser(); // Cargar usuarios al inicio
@@ -224,22 +224,22 @@ public class Login extends javax.swing.JFrame {
         }
         usuarioActual = gestionU.login(user, pass);
         if (usuarioActual != null) {
-
+            
             JOptionPane.showMessageDialog(null,
                     "Sesión Iniciada");
             this.dispose();
-
+            
             int opUsuario = 0;
             do {
-
+                
                 opUsuario = MenuUusario.menuUsuario(usuarioActual);
-
+                
                 switch (opUsuario) {
                     case 1:
                         int opF;
                         do {
                             foro.mostrarForo();
-
+                            
                             opF = MenuForo.menuForo(usuarioActual);
                             // clearConsole();
 
@@ -255,7 +255,7 @@ public class Login extends javax.swing.JFrame {
                                     }
                                     clearConsole();
                                     break;
-
+                                
                                 case 2:
                                     // Agregar un mensaje a un tema
                                     String inputIdTema = JOptionPane.showInputDialog("Ingrese el número del tema al que desea agregar un mensaje:");
@@ -264,7 +264,7 @@ public class Login extends javax.swing.JFrame {
                                         break;
                                     }
                                     int idTema = Integer.parseInt(inputIdTema);
-
+                                    
                                     String contenido = JOptionPane.showInputDialog("Ingrese su mensaje:");
                                     if (contenido == null || contenido.trim().isEmpty()) {
                                         JOptionPane.showMessageDialog(null, "Operación cancelada o mensaje vacío.");
@@ -274,7 +274,7 @@ public class Login extends javax.swing.JFrame {
                                     foro.mostrarForo();
                                     clearConsole();
                                     break;
-
+                                
                                 case 3:
                                     // Responder a un mensaje
                                     inputIdTema = JOptionPane.showInputDialog("Ingrese el número del tema al que desea dejar un comentario:");
@@ -283,14 +283,14 @@ public class Login extends javax.swing.JFrame {
                                         break;
                                     }
                                     idTema = Integer.parseInt(inputIdTema);
-
+                                    
                                     String inputNumMensaje = JOptionPane.showInputDialog("Ingresa el número del mensaje a comentar:");
                                     if (inputNumMensaje == null || inputNumMensaje.trim().isEmpty()) {
                                         JOptionPane.showMessageDialog(null, "Operación cancelada o entrada inválida.");
                                         break;
                                     }
                                     int numMensaje = Integer.parseInt(inputNumMensaje);
-
+                                    
                                     contenido = JOptionPane.showInputDialog("Ingrese el comentario:");
                                     if (contenido == null || contenido.trim().isEmpty()) {
                                         JOptionPane.showMessageDialog(null, "Operación cancelada o comentario vacío.");
@@ -300,7 +300,7 @@ public class Login extends javax.swing.JFrame {
                                     foro.mostrarForo();
                                     clearConsole();
                                     break;
-
+                                
                                 case 4:
                                     String palabraClave = JOptionPane.showInputDialog("Ingrese la palabra clave para buscar en el foro:");
                                     if (palabraClave == null || palabraClave.trim().isEmpty()) {
@@ -311,7 +311,7 @@ public class Login extends javax.swing.JFrame {
                                     foro.mostrarForo();
                                     clearConsole();
                                     break;
-
+                                
                                 case 5:
                                     String autorX = JOptionPane.showInputDialog("Ingrese el nombre del autor a filtrar:");
                                     if (autorX == null || autorX.trim().isEmpty()) {
@@ -320,7 +320,7 @@ public class Login extends javax.swing.JFrame {
                                     }
                                     boolean encontrado = false;
                                     StringBuilder mensajesAutor = new StringBuilder();
-
+                                    
                                     for (Tema tema : foro.getTemas()) {
                                         for (Mensaje mensaje : tema.getMensajes()) {
                                             if (mensaje.getAutor().equalsIgnoreCase(autorX)) {
@@ -335,7 +335,7 @@ public class Login extends javax.swing.JFrame {
                                             }
                                         }
                                     }
-
+                                    
                                     if (encontrado) {
                                         String mensajesFormateados = Formatos.limpiarFormatoConsola(mensajesAutor.toString());
                                         JOptionPane.showMessageDialog(null, mensajesFormateados, "Mensajes del Autor: " + autorX, JOptionPane.INFORMATION_MESSAGE);
@@ -345,7 +345,7 @@ public class Login extends javax.swing.JFrame {
                                     foro.mostrarForo();
                                     clearConsole();
                                     break;
-
+                                
                                 case 6:
                                     String inputIdB = JOptionPane.showInputDialog("ID del tema:");
                                     if (inputIdB == null || inputIdB.trim().isEmpty()) {
@@ -356,7 +356,7 @@ public class Login extends javax.swing.JFrame {
                                     foro.deleteTema(idB, usuarioActual.getUsuario());
                                     clearConsole();
                                     break;
-
+                                
                                 case 7:
                                     String inputIdBu = JOptionPane.showInputDialog("ID del tema:");
                                     if (inputIdBu == null || inputIdBu.trim().isEmpty()) {
@@ -364,18 +364,18 @@ public class Login extends javax.swing.JFrame {
                                         break;
                                     }
                                     int idBu = Integer.parseInt(inputIdBu);
-
+                                    
                                     String inputNumE = JOptionPane.showInputDialog("ID del mensaje:");
                                     if (inputNumE == null || inputNumE.trim().isEmpty()) {
                                         JOptionPane.showMessageDialog(null, "Operación cancelada o entrada inválida.");
                                         break;
                                     }
                                     int numE = Integer.parseInt(inputNumE);
-
+                                    
                                     foro.eliminarMensaje(idBu, numE, usuarioActual.getUsuario());
                                     clearConsole();
                                     break;
-
+                                
                                 case 8:
                                     String inputIdBus = JOptionPane.showInputDialog("ID del tema:");
                                     if (inputIdBus == null || inputIdBus.trim().isEmpty()) {
@@ -383,33 +383,33 @@ public class Login extends javax.swing.JFrame {
                                         break;
                                     }
                                     int idBus = Integer.parseInt(inputIdBus);
-
+                                    
                                     String inputNumMen = JOptionPane.showInputDialog("ID del mensaje:");
                                     if (inputNumMen == null || inputNumMen.trim().isEmpty()) {
                                         JOptionPane.showMessageDialog(null, "Operación cancelada o entrada inválida.");
                                         break;
                                     }
                                     int numMen = Integer.parseInt(inputNumMen);
-
+                                    
                                     String inputNumR = JOptionPane.showInputDialog("ID del comentario:");
                                     if (inputNumR == null || inputNumR.trim().isEmpty()) {
                                         JOptionPane.showMessageDialog(null, "Operación cancelada o entrada inválida.");
                                         break;
                                     }
                                     int numR = Integer.parseInt(inputNumR);
-
+                                    
                                     foro.eliminarRespuesta(idBus, numMen, numR, usuarioActual.getUsuario());
                                     clearConsole();
                                     break;
-
+                                
                                 case 9:
                                     clearConsole();
                                     break;
-
+                                
                             }
                         } while (opF != 9);
                         break;
-
+                    
                     case 2:
                         JOptionPane.showMessageDialog(null,
                                 "Nombres: "
@@ -419,7 +419,7 @@ public class Login extends javax.swing.JFrame {
                                 + "\nEstado: " + usuarioActual.getEstadoComoTexto(),
                                 "👤:  @" + usuarioActual.getUsuario(),
                                 JOptionPane.INFORMATION_MESSAGE);
-
+                        
                         break;
                     case 3:
                         gestionU.modificarAtributosUsuario(usuarioActual);
@@ -427,33 +427,36 @@ public class Login extends javax.swing.JFrame {
                     case 4:
                         JOptionPane.showMessageDialog(null, "Sesion cerrada con éxito");
                         break;
-
+                    
                 }
             } while (opUsuario != 4 && usuarioActual != null);
             Home hom = new Home();
             hom.setVisible(true);
             hom.setLocationRelativeTo(null);
             return;
-
+            
         }
-
+        
         int opAdmin = 0;
-        if (admin.loginAG(user, pass)) {
-
+        
+        adminActualNormal = admin.loginAE(user, pass);
+        
+        if (admin.loginAG(user, pass) || adminActualNormal != null) {
+            
             JOptionPane.showMessageDialog(null, "Credenciales correctas. Sesion iniciada", "Mensaje",
                     JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
-
+            
         } else {
-
+            
             JOptionPane.showMessageDialog(null, "Credenciales incorrectas.", "Error",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
+        boolean isAdminGeneral = admin.loginAG(user, pass);
         do {
-
-            opAdmin = MenuAdministracion.menuAdmin();
-
+            opAdmin = MenuAdministracion.menuAdminG(isAdminGeneral);
+            
             switch (opAdmin) {
                 case 1:
                     if (gestionU.isListaVacia()) {
@@ -466,7 +469,7 @@ public class Login extends javax.swing.JFrame {
                         opOpcion = gestionU.mostrarUsuariosEnLista();
                         Usuario usuario = null;
                         switch (opOpcion) {
-
+                            
                             case 0: // Desactivar Usuario
                                 String userx = JOptionPane
                                         .showInputDialog("Ingrese el nombre del usuario:");
@@ -491,7 +494,7 @@ public class Login extends javax.swing.JFrame {
                                     JOptionPane.showMessageDialog(null,
                                             "Usuario: " + userToReactivate + " Reactivado");
                                     gestionU.saveUser();
-
+                                    
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Usuario no encontrado",
                                             "INFORMACION", JOptionPane.INFORMATION_MESSAGE, null);
@@ -504,31 +507,38 @@ public class Login extends javax.swing.JFrame {
                                 if (usuario != null) {
                                     JOptionPane.showMessageDialog(null, "Usuario: " + userE + " Eliminado");
                                     gestionU.saveUser();
-
+                                    
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Usuario no encontrado",
                                             "INFORMACION", JOptionPane.INFORMATION_MESSAGE, null);
                                 }
+                                break;
                         }
                         break;
-
+                        
                     } while (opOpcion != 3);
                     break;
-
+                
                 case 2:
-                    if (gestionA.adminVacio()) {
-                        JOptionPane.showMessageDialog(null, "No hay administardores agregados");
-                        break;
+                    if (isAdminGeneral && gestionA.adminVacio()) {
+                        JOptionPane.showMessageDialog(null, "No hay administradores agregados");
+                    } else if (isAdminGeneral) {
+                        int opcion = gestionA.mostrarAdministradoresEnLista();
+                    } else {
+                        JOptionPane.showMessageDialog(null, adminActualNormal);
                     }
-                    int opcion = gestionA.mostrarAdministradoresEnLista();
-
+                    
                     break;
                 case 3:
-                    String userA = JOptionPane.showInputDialog("Usuario: ");
-                    gestionA.agregarAdministradorEspecifico(userA);
-
+                    if (isAdminGeneral) {
+                        String userA = JOptionPane.showInputDialog("Usuario:");
+                        gestionA.agregarAdministradorEspecifico(userA);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Por ahora esta funcionalidad solo está disponible para el Administrador General");
+                    }
+                    
                     break;
-
+                
                 case 4:
                     
                     StringBuilder mensajesMensaje = new StringBuilder();
@@ -540,67 +550,61 @@ public class Login extends javax.swing.JFrame {
                     Formatos.mostrarMensajesEnPaginas(mensajesMensaje.toString(), "Mensajes");
                     clearConsole();
                     break;
-
+                
                 case 5:
                     String inputIdB = JOptionPane.showInputDialog(null, "ID del tema:");
                     if (inputIdB == null || inputIdB.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada vacía.");
                         break; // Salir del caso sin realizar ninguna acción
                     }
                     int idB = Integer.parseInt(inputIdB);
                     foro.deleteTema(idB, Administrador.getADMIN_GENERAL());
                     break;
-
+                
                 case 6:
                     String inputIdBu = JOptionPane.showInputDialog(null, "ID del tema:");
                     if (inputIdBu == null || inputIdBu.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada vacía.");
                         break;
                     }
                     int idBu = Integer.parseInt(inputIdBu);
-
+                    
                     String inputNumE = JOptionPane.showInputDialog(null, "ID del mensaje:");
                     if (inputNumE == null || inputNumE.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada vacía.");
                         break;
                     }
                     int numE = Integer.parseInt(inputNumE);
-
+                    
                     foro.eliminarMensaje(idBu, numE, Administrador.getADMIN_GENERAL());
                     break;
-
+                
                 case 7:
                     String inputIdBus = JOptionPane.showInputDialog(null, "ID del tema:");
                     if (inputIdBus == null || inputIdBus.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada vacía.");
                         break;
                     }
                     int idBus = Integer.parseInt(inputIdBus);
-
+                    
                     String inputNumMen = JOptionPane.showInputDialog(null, "ID del mensaje:");
                     if (inputNumMen == null || inputNumMen.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada vacía.");
                         break;
                     }
                     int numMen = Integer.parseInt(inputNumMen);
-
+                    
                     String inputNumR = JOptionPane.showInputDialog(null, "ID del comentario:");
                     if (inputNumR == null || inputNumR.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Operación cancelada o entrada vacía.");
                         break;
                     }
                     int numR = Integer.parseInt(inputNumR);
-
+                    
                     foro.eliminarRespuesta(idBus, numMen, numR, Administrador.getADMIN_GENERAL());
-
+                    
                     break;
-
+                
                 case 8:
-
+                    
                     JOptionPane.showMessageDialog(null, "Sesion cerrada con éxito");
                     break;
             }
-
+            
         } while (opAdmin != 8);
         Home hom = new Home();
         hom.setVisible(true);
@@ -613,7 +617,7 @@ public class Login extends javax.swing.JFrame {
         hom.setVisible(true);
         hom.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn_volverActionPerformed
-
+    
     private void BOTON_INICIARActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BOTON_INICIARActionPerformed
 
     }// GEN-LAST:event_BOTON_INICIARActionPerformed

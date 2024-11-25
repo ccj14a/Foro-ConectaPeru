@@ -7,7 +7,7 @@ package com.proyecto.Clases;
 import java.io.*;
 import javax.swing.JOptionPane;
 
-public class Administrador extends SuperUsuario {
+public class Administrador extends SuperUsuario implements Serializable{
 
     // atributos
     private double salario;
@@ -71,9 +71,13 @@ public class Administrador extends SuperUsuario {
 
     }
 
-    public boolean loginA(String user, String contra) {
+    public Administrador loginAE(String user, String contra) {
 
-        return user.equals(getUsuario()) && contra.equals(getContra());
+       for(Administrador admin:administradoresNormales){
+           if(admin!=null && admin.getUsuario().equals(user)&& admin.getContra().equals(contra))
+               return admin;
+       }
+       return null;
     }
 
     public void guardarAdmin() {
@@ -194,5 +198,6 @@ public class Administrador extends SuperUsuario {
     private static Administrador[] administradoresNormales = new Administrador[100];
     public static int idAdmin = 1;
     private static int contador = 0;
+     private static final long serialVersionUID = 1L;
 
 }
