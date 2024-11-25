@@ -44,7 +44,7 @@
             <configuration>
                 <archive>
                     <manifest>
-                        <mainClass>com.proyecto.foroconectaperu.Main1</mainClass>
+                        <mainClass>com.proyecto.Principal.Main1</mainClass>
                     </manifest>
                 </archive>
             </configuration>

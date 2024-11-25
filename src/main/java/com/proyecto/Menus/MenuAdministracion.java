@@ -30,7 +30,7 @@ public class MenuAdministracion {
 
         // Menú para Administrador Específico
         String menuEspecifico = """
-            MENU DE ADMINISTRACIÓN 
+    MENU DE ADMINISTRACIÓN 
 
             [1]. Gestionar Usuarios
             [2]. Ver Perfil

@@ -1,4 +1,7 @@
-package com.proyecto.foroconectaperu;
+
+package com.proyecto.Principal;
+
+import com.proyecto.Ventanas.Home;
 
 public class Main1 {
 

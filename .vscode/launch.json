@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Main1",
+      "request": "launch",
+      "mainClass": "com.proyecto.Principal.Main1",
+      "projectName": "ForoConectaPeru"
+    },
+    {
+      "type": "java",
       "name": "Inicio",
       "request": "launch",
       "mainClass": "com.proyecto.foroconectaperu.Inicio",
