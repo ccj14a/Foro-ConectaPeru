@@ -14,7 +14,7 @@ En este proyecto utilicé las siguientes tecnologías y herramientas para el des
 <img src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg" alt="Java " width="40"> [**Java**](https://www.java.com)
 <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Apache_NetBeans_Logo.svg" alt="NetBeans" width="40"> [**NetBeans**](https://netbeans.apache.org)
 <img src="https://code.visualstudio.com/assets/images/code-stable.png" alt="VS Code" width="40"> [**VS Code**](https://code.visualstudio.com)
-# Preview
+## Preview
 ![home](https://github.com/user-attachments/assets/5a91b9ef-fab5-4b0b-b00a-25786152ab7e)
 
 ![login](https://github.com/user-attachments/assets/ec398289-0e51-4628-917d-a5bf5c5b7d8c)
