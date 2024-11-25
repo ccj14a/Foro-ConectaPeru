@@ -16,12 +16,15 @@ En este proyecto utilicé las siguientes tecnologías y herramientas para el des
 <img src="https://code.visualstudio.com/assets/images/code-stable.png" alt="VS Code" width="40"> [**VS Code**](https://code.visualstudio.com)
 
 ## Previews
-![home](https://github.com/user-attachments/assets/5a91b9ef-fab5-4b0b-b00a-25786152ab7e)
+![home](https://github.com/user-attachments/assets/4f9439e1-8a35-41a2-911d-4408b8088a90)
 
-![login](https://github.com/user-attachments/assets/ec398289-0e51-4628-917d-a5bf5c5b7d8c)
+![login](https://github.com/user-attachments/assets/deb30b72-7983-4de7-9431-6252e0063de7)
 
-![register](https://github.com/user-attachments/assets/21f46db1-6fc6-4072-a967-d478dce57225)
+![register](https://github.com/user-attachments/assets/d258da37-b82f-4c62-989c-067fcb1ac38f)
 
-![foro_user](https://github.com/user-attachments/assets/4fbf7164-8ca2-48ee-a310-046697a039a0)
+![foro_user](https://github.com/user-attachments/assets/eb9049dd-b2b0-4c13-9507-bde283debc83)
 
-![foro_admin](https://github.com/user-attachments/assets/bc74a985-0791-4365-b01d-b021c9e5a431)
+![foro_admin](https://github.com/user-attachments/assets/4b68670e-df2a-4f2f-8cda-856f492f2c20)
+
+![admin_users](https://github.com/user-attachments/assets/6d2571cb-7ada-400a-bc3a-6c827d6f6bce)
+
