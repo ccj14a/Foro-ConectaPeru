@@ -18,9 +18,9 @@ En este proyecto utilicé las siguientes tecnologías y herramientas para el des
 ## Previews
 ![home](https://github.com/user-attachments/assets/4f9439e1-8a35-41a2-911d-4408b8088a90)
 
-![login](https://github.com/user-attachments/assets/deb30b72-7983-4de7-9431-6252e0063de7)
+![image](https://github.com/user-attachments/assets/a0384517-1f32-483b-8a37-d0fce0edb2fd)
 
-![register](https://github.com/user-attachments/assets/d258da37-b82f-4c62-989c-067fcb1ac38f)
+![image](https://github.com/user-attachments/assets/552a3a05-df3d-4d2c-9a58-99a98af464b5)
 
 ![image](https://github.com/user-attachments/assets/86b0fea9-5a14-4f45-bf4e-64d989ce21e5)
 
