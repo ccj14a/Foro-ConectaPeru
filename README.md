@@ -26,7 +26,7 @@ En este proyecto utilicé las siguientes tecnologías y herramientas para el des
 
 ![image](https://github.com/user-attachments/assets/25f593a7-85c3-4a91-86dd-dc36d17a4486)
 
-![image](https://github.com/user-attachments/assets/817247f5-4c44-46ce-a6d1-976edf327e8c)
+![image](https://github.com/user-attachments/assets/3cdeebd9-9b5f-49c1-a9ef-fc3361e51907)
 
 ![foro_admin](https://github.com/user-attachments/assets/4b68670e-df2a-4f2f-8cda-856f492f2c20)
 
